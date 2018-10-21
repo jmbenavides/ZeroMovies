@@ -61,6 +61,31 @@ public class Listapelicula {
                
     }
     
+    public void delete(int n){
+        Nodopelicula ant=null;
+        Nodopelicula p=ptr;
+        int cont=0;
+        if(p!=null){
+            while(p!=null && cont!=n){
+                ant=p;
+                p=p.link;
+                cont++;
+            }
+        
+            if(p==ptr){
+                ptr=p;
+            }else{
+                if(cont==n){
+                    ant.link=p.link;
+                } 
+            }
+        }else{
+            System.out.println("la lista ya esta vacia");
+        }
+        
+               
+    }
+    
     public void consult(){
         Nodopelicula p=ptr;
         if(p!=null){
@@ -159,27 +184,36 @@ public class Listapelicula {
     }
     
     public void writeinFile(){
-        Nodopelicula p=ptr;
-        while(p!=null){
-            try{
-                FileReader fr = new FileReader(peliculas);BufferedReader br = new BufferedReader(fr);
-                if(br.readLine().equals("#")){
-                    FileWriter fw = new FileWriter(peliculas);BufferedWriter bw = new BufferedWriter(fw);
-                    bw.write(p.nombre+"#"+p.genero+"#"+p.duracion+"#"+p.imagen+"#");
-                    bw.newLine();
-                    bw.close();
+        try{
+            FileWriter fw1 = new FileWriter(peliculas);BufferedWriter bw1 = new BufferedWriter(fw1);
+            bw1.write("#");
 
-                }else{
 
-                    FileWriter fw = new FileWriter(peliculas, true);BufferedWriter bw = new BufferedWriter(fw);
-                    bw.write(p.nombre+"#"+p.genero+"#"+p.duracion+"#"+p.imagen+"#");
-                    bw.newLine();
-                    bw.close();
-                }
-            }catch(IOException e){
-                
-            } 
-            p=p.link;
+            Nodopelicula p=ptr;
+            while(p!=null){
+                try{
+                    FileReader fr = new FileReader(peliculas);BufferedReader br = new BufferedReader(fr);
+
+                    if(br.readLine().equals("#")){
+                        FileWriter fw = new FileWriter(peliculas);BufferedWriter bw = new BufferedWriter(fw);
+                        bw.write(p.nombre+"#"+p.genero+"#"+p.duracion+"#"+p.imagen+"#");
+                        bw.newLine();
+                        bw.close();
+
+                    }else{
+
+                        FileWriter fw = new FileWriter(peliculas, true);BufferedWriter bw = new BufferedWriter(fw);
+                        bw.write(p.nombre+"#"+p.genero+"#"+p.duracion+"#"+p.imagen+"#");
+                        bw.newLine();
+                        bw.close();
+                    }
+                }catch(IOException e){
+
+                } 
+                p=p.link;
+            }
+        }catch(Exception e){
+            
         }
     }
     

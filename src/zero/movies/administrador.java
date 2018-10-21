@@ -27,13 +27,14 @@ public class administrador extends javax.swing.JFrame {
     /**
      * Creates new form administrador
      */
-        Listapelicula lp;
+        Listapelicula lp=new Listapelicula();
         File peliculas= new File ("peliculas.txt");
     public administrador() {
         
         initComponents();
         setLocationRelativeTo(null);
         update();
+        fullList();
     }
 
     /**
@@ -50,8 +51,8 @@ public class administrador extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         addBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        consultBtn = new javax.swing.JButton();
+        editBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,14 +61,14 @@ public class administrador extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre", "Genero", "Imagen", "Duración"
+                "Nombre", "Genero", "Duracion", "Imagen"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Long.class
+                java.lang.String.class, java.lang.String.class, java.lang.Long.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -100,9 +101,9 @@ public class administrador extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("jButton3");
+        consultBtn.setText("jButton3");
 
-        jButton4.setText("jButton4");
+        editBtn.setText("jButton4");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -118,9 +119,9 @@ public class administrador extends javax.swing.JFrame {
                 .addGap(63, 63, 63)
                 .addComponent(deleteBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addComponent(consultBtn)
                 .addGap(47, 47, 47)
-                .addComponent(jButton4)
+                .addComponent(editBtn)
                 .addGap(62, 62, 62))
         );
         jPanel1Layout.setVerticalGroup(
@@ -132,8 +133,8 @@ public class administrador extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addBtn)
                     .addComponent(deleteBtn)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(consultBtn)
+                    .addComponent(editBtn))
                 .addGap(75, 75, 75))
         );
 
@@ -163,19 +164,19 @@ public class administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_addBtnMouseClicked
 
     private void deleteBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteBtnMouseClicked
-        DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
-        
+        DefaultTableModel model= (DefaultTableModel) jTable1.getModel();        
         int numfila= jTable1.getSelectedRow();
         System.out.println("numfila"+numfila);
         if(numfila>=0){
-            delete(numfila);
+            lp.delete(numfila);
+            lp.writeinFile();
+            this.update();
+            //delete(numfila);
         }else{
             JOptionPane.showMessageDialog(null, "Seleccione un pelicula para eliminar");
         }
         
     }//GEN-LAST:event_deleteBtnMouseClicked
-
-    
     
     public void update() {
         String linea;        
@@ -201,28 +202,24 @@ public class administrador extends javax.swing.JFrame {
                 }else{
                     FileReader fr=new FileReader(peliculas);BufferedReader br= new BufferedReader(fr);
                     while((linea=br.readLine())!=null){
-                        String codigo=f.dividir(linea, "#", 0);
-                        String co=f.dividir(linea, "#", 1);
-                        String cd=f.dividir(linea, "#", 2);
-                        String hora=f.dividir(linea, "#", 3);
-                        String fecha=f.dividir(linea, "#", 4);                        
-                        String precio=f.dividir(linea, "#", 5);
+                        String nombre=f.dividir(linea, "#", 0);
+                        String genero=f.dividir(linea, "#", 1);
+                        String duracion=f.dividir(linea, "#", 2);
+                        String imagen=f.dividir(linea, "#", 3);
+                       
                         
-                        Object[] fila={codigo,co,cd,hora,fecha,precio};
+                        Object[] fila={nombre,genero,duracion,imagen};
                         model.addRow(fila);
                     }
                     
                 }
-                
-                
-                
             } catch (FileNotFoundException ex) {
                 
             } catch (IOException ex) {
                 
             }   
         }else{
-            JOptionPane.showMessageDialog(null, "no hay vuelos");
+            JOptionPane.showMessageDialog(null, "no hay peliculas");
         }
         
     }
@@ -232,6 +229,7 @@ public class administrador extends javax.swing.JFrame {
         peliculas = new File(x.getAbsolutePath() + "//peliculas.txt"); 
         String linea;
         int cont=0;
+        
         
         //Obtengo las lineas que posee el archivos
         try{            
@@ -310,6 +308,29 @@ public class administrador extends javax.swing.JFrame {
         model.removeRow(numfila);        
     }
     
+    public void fullList(){
+        Funcion f= new Funcion();
+        String linea;
+        try{
+            FileReader fr=new FileReader(peliculas);BufferedReader br= new BufferedReader(fr);
+            
+                    while((linea=br.readLine())!=null){
+                        if(linea=="#"){
+                            System.out.println("archivo vacio");
+                        }else{
+                            String nombre=f.dividir(linea, "#", 0);
+                            String genero=f.dividir(linea, "#", 1);
+                            String dur=f.dividir(linea, "#", 2);
+                            int duracion=Integer.parseInt(dur);
+                            String imagen=f.dividir(linea, "#", 3);
+                            lp.add(new Nodopelicula(nombre,genero,imagen,duracion));
+                        }    
+                    }
+            
+        }catch(IOException e){
+            
+        }
+    }
     
     
     public static void main(String args[]) {
@@ -346,9 +367,9 @@ public class administrador extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
+    private javax.swing.JButton consultBtn;
     private javax.swing.JButton deleteBtn;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton editBtn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable jTable1;
