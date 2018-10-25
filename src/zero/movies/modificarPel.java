@@ -29,6 +29,7 @@ public class modificarPel extends javax.swing.JFrame {
     int numfila=0;
     public modificarPel() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -58,7 +59,7 @@ public class modificarPel extends javax.swing.JFrame {
         jLabel3.setText("Duracion");
 
         backBtn.setBackground(new java.awt.Color(255, 153, 102));
-        backBtn.setText("jButton1");
+        backBtn.setText("Atras");
         backBtn.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         backBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -165,14 +166,14 @@ public class modificarPel extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBtnMouseClicked
-        administrador ad=new administrador();
+        administradorPel ad=new administradorPel();
         ad.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backBtnMouseClicked
 
     private void editpelbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editpelbtnMouseClicked
         Funcion fun= new Funcion();
-        administrador ad= new administrador();
+        administradorPel ad= new administradorPel();
 
         String nombre=nombreTf.getText();
         String genero=generoTf.getText();

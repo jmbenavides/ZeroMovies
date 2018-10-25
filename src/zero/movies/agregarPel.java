@@ -53,7 +53,7 @@ public class agregarPel extends javax.swing.JFrame {
         jLabel2.setText("Genero");
 
         addpelbtn.setBackground(new java.awt.Color(255, 153, 102));
-        addpelbtn.setText("jButton1");
+        addpelbtn.setText("Aceptar");
         addpelbtn.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         addpelbtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -71,11 +71,16 @@ public class agregarPel extends javax.swing.JFrame {
         jLabel3.setText("Duracion");
 
         backBtn.setBackground(new java.awt.Color(255, 153, 102));
-        backBtn.setText("jButton1");
+        backBtn.setText("Atras");
         backBtn.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         backBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 backBtnMouseClicked(evt);
+            }
+        });
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
             }
         });
 
@@ -147,7 +152,7 @@ public class agregarPel extends javax.swing.JFrame {
     private void addpelbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addpelbtnMouseClicked
         Funcion fun= new Funcion();        
         
-        administrador ad= new administrador();
+        administradorPel ad= new administradorPel();
         
         String nombre=nombreTf.getText();
         String genero=generoTf.getText();
@@ -199,6 +204,13 @@ public class agregarPel extends javax.swing.JFrame {
     private void backBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBtnMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_backBtnMouseClicked
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+        administradorPel ad= new administradorPel();
+        ad.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_backBtnActionPerformed
     
 //  
     public void crear(){
