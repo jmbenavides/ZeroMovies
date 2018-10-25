@@ -29,7 +29,7 @@ public class consultarPel extends javax.swing.JFrame {
     public consultarPel() {
         initComponents();
         setLocationRelativeTo(null);
-        fullList();
+        //fullList();
         
     }
 
@@ -191,35 +191,31 @@ public class consultarPel extends javax.swing.JFrame {
     }
     
     public void update(){
-        System.out.println("Update numfila"+numfila);
+        
         String linea;int cont=0;
-        System.out.println("Update intro");
+        
         Funcion f= new Funcion();
         try{
             FileReader fr=new FileReader(peliculas);BufferedReader br= new BufferedReader(fr);
                 while((linea=br.readLine())!=null && numfila!=cont){
-
-                        String nombre=f.dividir(linea, "#", 0);
-                        String genero=f.dividir(linea, "#", 1);
-                        String dur=f.dividir(linea, "#", 2);
-
-                        int duracion=Integer.parseInt(dur);
-                        String imagen=f.dividir(linea, "#", 3);
-                        System.out.println("Update intro 2");
                         cont++;
                 }
-                System.out.println("cont:"+cont+" numfila:"+numfila);
+        
                 if(cont==numfila){
-                    System.out.println("Update linea "+linea);
-                    
                     String nombre=f.dividir(linea, "#", 0);
                     String genero=f.dividir(linea, "#", 1);
                     String dur=f.dividir(linea, "#", 2);
+                    
+                    
+                    int duracion=Integer.parseInt(dur);
+                    int hora=duracion/60;
+                    int min=duracion%60;
+                    
                     String imagen=f.dividir(linea, "#", 3);
                     
                     this.nombreTf.setText(nombre);
                     this.generoTf.setText(genero);
-                    this.duracionTf.setText(dur);
+                    this.duracionTf.setText(hora+":"+min);
                     
                     String rut=imagen;
                     ImageIcon icon=new ImageIcon(rut);

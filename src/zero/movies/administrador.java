@@ -109,6 +109,11 @@ public class administrador extends javax.swing.JFrame {
         });
 
         editBtn.setText("jButton4");
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -186,11 +191,31 @@ public class administrador extends javax.swing.JFrame {
 
     private void consultBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultBtnActionPerformed
         // TODO add your handling code here:
-        consultarPel cP=new consultarPel();
-        cP.numfila=jTable1.getSelectedRow();
-        cP.setVisible(true);
-        this.dispose();
+        int numfila= jTable1.getSelectedRow();
+        if(numfila>=0){
+            consultarPel cP=new consultarPel();
+            cP.numfila=jTable1.getSelectedRow();
+            cP.lp=this.lp;
+            cP.setVisible(true);
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccione un pelicula para consultar");
+        }
     }//GEN-LAST:event_consultBtnActionPerformed
+
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        // TODO add your handling code here:
+        int numfila=this.jTable1.getSelectedRow();
+        if(numfila>=0){
+            modificarPel mP=new modificarPel();
+            mP.numfila=jTable1.getSelectedRow();
+            mP.lp=this.lp;
+            mP.setVisible(true);
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccione un pelicula para modificar");
+        }
+    }//GEN-LAST:event_editBtnActionPerformed
     
     public void update() {
         String linea;        

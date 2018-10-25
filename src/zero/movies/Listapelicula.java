@@ -162,15 +162,18 @@ public class Listapelicula {
         }
     }
     
-    public void edit(String pel,String npel, String gen, String img, int dur){
+    public void edit(int n,String npel, String gen, String img, int dur){
         Nodopelicula p=ptr;
+        int cont=0;
         if(p!=null){
-            while(p!=null && p.nombre!=pel){
+            while(p!=null && cont!=n){
                 p=p.link;
+                cont++;
             }
-            if(p.nombre==pel){
+            if(cont==n){
+                System.out.println("edit p "+ p);
                 p.nombre=npel;
-                //p.imagen=img;
+                p.imagen=img;
                 p.duracion=dur;
                 p.genero=gen;
             }
@@ -197,7 +200,7 @@ public class Listapelicula {
     public void writeinFile(){
         try{
             
-            Nodopelicula p=ptr;
+            Nodopelicula p=ptr;int cont=0;
             if(p!=null){
                 while(p!=null){   
                         System.out.println("Writeinfile p "+p.toString());
@@ -218,7 +221,7 @@ public class Listapelicula {
                            
                         }
                     
-                                      
+                    
                     p=p.link;
                 }
             }else{                
