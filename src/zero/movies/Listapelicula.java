@@ -67,20 +67,27 @@ public class Listapelicula {
         int cont=0;
         if(p!=null){
             while(p!=null && cont!=n){
+                System.out.println("delete p "+p.toString());
                 ant=p;
                 p=p.link;
                 cont++;
             }
-        
-            if(p==ptr){
-                ptr=p;
-            }else{
+            
+            if(cont<=n && p==null){
+                System.out.println(" la posicion no se encuentra dentro la lista cont:"+cont+" n:"+ n);
+            }else{                
                 if(cont==n){
-                    ant.link=p.link;
-                } 
+                    if(p==ptr){
+                        ptr=p.link;
+                    }else{
+                        System.out.println("delete ant "+ant.toString());
+                        //System.out.println("p "+p.toString());
+                        ant.link=p.link;
+                    } 
+                }
             }
         }else{
-            System.out.println("la lista ya esta vacia");
+            p=null;
         }
         
                
@@ -90,11 +97,11 @@ public class Listapelicula {
         Nodopelicula p=ptr;
         if(p!=null){
             while(p!=null){
-                System.out.println(p);
+                System.out.println("consulta "+p);
                 p=p.link;
             }
         }else{
-            System.out.println("lista de peliculas vacias");
+            System.out.println("lista de peliculas vaciasxxx");
         }
     }
     
@@ -112,13 +119,15 @@ public class Listapelicula {
         }
     }
     
-    public void edit(String pel, String npel,int o){
+    public void edit(int n, String npel,int o){
         Nodopelicula p=ptr;
+        int cont=0;
         if(p!=null){
-            while(p!=null && p.nombre!=pel){
+            while(p!=null && cont!=n){
                 p=p.link;
+                cont++;
             }
-            if(p.nombre==pel){
+            if(n==cont){
                 switch(o){
                     case 1: 
                         p.nombre=npel;
@@ -137,13 +146,15 @@ public class Listapelicula {
         }
     }
     
-    public void edit(String pel, int dur){
+    public void edit(int n, int dur){
         Nodopelicula p=ptr;
+        int cont=0;
         if(p!=null){
-            while(p!=null && p.nombre!=pel){
+            while(p!=null && cont!=n){
                 p=p.link;
+                cont++;
             }
-            if(p.nombre==pel){
+            if(cont==n){
                 p.duracion=dur;
             }
         }else{
@@ -185,42 +196,44 @@ public class Listapelicula {
     
     public void writeinFile(){
         try{
-            FileWriter fw1 = new FileWriter(peliculas);BufferedWriter bw1 = new BufferedWriter(fw1);
-            bw1.write("#");
-
-
-            Nodopelicula p=ptr;
-            while(p!=null){
-                try{
-                    FileReader fr = new FileReader(peliculas);BufferedReader br = new BufferedReader(fr);
-
-                    if(br.readLine().equals("#")){
-                        FileWriter fw = new FileWriter(peliculas);BufferedWriter bw = new BufferedWriter(fw);
-                        bw.write(p.nombre+"#"+p.genero+"#"+p.duracion+"#"+p.imagen+"#");
-                        bw.newLine();
-                        bw.close();
-
-                    }else{
-
-                        FileWriter fw = new FileWriter(peliculas, true);BufferedWriter bw = new BufferedWriter(fw);
-                        bw.write(p.nombre+"#"+p.genero+"#"+p.duracion+"#"+p.imagen+"#");
-                        bw.newLine();
-                        bw.close();
-                    }
-                }catch(IOException e){
-
-                } 
-                p=p.link;
-            }
-        }catch(Exception e){
             
+            Nodopelicula p=ptr;
+            if(p!=null){
+                while(p!=null){   
+                        System.out.println("Writeinfile p "+p.toString());
+                        FileReader fr = new FileReader(peliculas);BufferedReader br = new BufferedReader(fr);  
+                        
+                        if(br.readLine().equals("#")){
+                            FileWriter fw1 = new FileWriter(peliculas);BufferedWriter bw1 = new BufferedWriter(fw1);            
+                            bw1.write(p.nombre+"#"+p.genero+"#"+p.duracion+"#"+p.imagen+"#");
+                            bw1.newLine();
+                            bw1.close();
+                            
+                        }else{
+                            
+                            FileWriter fw = new FileWriter(peliculas, true);BufferedWriter bw = new BufferedWriter(fw);
+                            bw.write(p.nombre+"#"+p.genero+"#"+p.duracion+"#"+p.imagen+"#");
+                            bw.newLine();
+                            bw.close();
+                           
+                        }
+                    
+                                      
+                    p=p.link;
+                }
+            }else{                
+                
+            }
+        }catch(IOException e){
+            System.out.println("212");
         }
     }
     
     public void erase(){
         try{
-        FileWriter fw = new FileWriter(peliculas);BufferedWriter bw = new BufferedWriter(fw);
-        bw.write("#");
+            FileWriter fw = new FileWriter(peliculas);BufferedWriter bw = new BufferedWriter(fw);
+            bw.write("#");
+            bw.close();
         }catch(IOException e){
             
         }

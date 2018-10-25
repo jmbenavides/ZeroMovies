@@ -32,6 +32,13 @@ public class ZeroMovies {
         Listausuario lu=new Listausuario();
         
        
+//       lp.add(new Nodopelicula("jorge","hombre","v2",12));
+//       lp.add(new Nodopelicula("josuke","defaultsettins","v3",13));
+//       lp.add(new Nodopelicula("jose","man","v4",14));
+//       lp.add(new Nodopelicula("johny","vato","v5",15));
+//       
+//       lp.delete(5);
+//       lp.consult();
        
     }
     

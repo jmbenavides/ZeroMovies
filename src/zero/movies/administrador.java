@@ -102,6 +102,11 @@ public class administrador extends javax.swing.JFrame {
         });
 
         consultBtn.setText("jButton3");
+        consultBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultBtnActionPerformed(evt);
+            }
+        });
 
         editBtn.setText("jButton4");
 
@@ -164,11 +169,12 @@ public class administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_addBtnMouseClicked
 
     private void deleteBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteBtnMouseClicked
-        DefaultTableModel model= (DefaultTableModel) jTable1.getModel();        
         int numfila= jTable1.getSelectedRow();
-        System.out.println("numfila"+numfila);
+        System.out.println("numfila"+ numfila);
         if(numfila>=0){
             lp.delete(numfila);
+            lp.consult();
+            lp.erase();
             lp.writeinFile();
             this.update();
             //delete(numfila);
@@ -177,6 +183,14 @@ public class administrador extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_deleteBtnMouseClicked
+
+    private void consultBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultBtnActionPerformed
+        // TODO add your handling code here:
+        consultarPel cP=new consultarPel();
+        cP.numfila=jTable1.getSelectedRow();
+        cP.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_consultBtnActionPerformed
     
     public void update() {
         String linea;        
@@ -224,90 +238,6 @@ public class administrador extends javax.swing.JFrame {
         
     }
     
-    public void delete(int numfila) {
-        File x = new File("");
-        peliculas = new File(x.getAbsolutePath() + "//peliculas.txt"); 
-        String linea;
-        int cont=0;
-        
-        
-        //Obtengo las lineas que posee el archivos
-        try{            
-            FileReader fr = new FileReader(peliculas);BufferedReader br = new BufferedReader(fr);            
-            while((linea=br.readLine())!=null){
-                cont++;     
-            }            
-        }catch(IOException e){            
-        }
-        //Creo un vector con con la misma cantidad de posiciones como lineas en el archivo
-        String[] vuelos=new String[cont];
-        //Coloco las lineas en sus respectivas posiciones dentro del vector
-        cont=0;
-        try{            
-            FileReader fr = new FileReader(peliculas);BufferedReader br = new BufferedReader(fr);            
-            while((linea=br.readLine())!=null){
-                vuelos[cont]=linea;
-                cont++;     
-            }            
-        }catch(IOException e){            
-        }
-        
-        int length=vuelos.length;
-        
-        length=length-1;
-        
-        // verifico de que haya datos en el vector despues de eliminar una posición
-        if(length==0){
-            System.out.println(" el vector que contiene las lineas del archivo se encuetra vacio");
-        }else{           
-        // borrado logico
-                for(int i=0;i< length;i++){
-                    if(numfila==i){
-                        vuelos[i]=vuelos[i+1];
-                    }                
-                }
-            
-               
-        }    
-        if (length==0) {
-        // dejo un caracter "#" como pruba de que el archivo esta vacio
-            try{
-                FileWriter fw = new FileWriter(peliculas);BufferedWriter bw = new BufferedWriter(fw);
-                bw.write("#");
-                bw.close();
-            }catch(IOException e){
-            }
-            System.out.println(" nothing");
-        }else{
-            
-        // escribo las lineas que se encuentran en el vector
-            for (int i = 0; i < length; i++) {
-            // en caso de que se  la primera fila es sobre escribira lo que hay en archivo eliminando el "#" que habia escrito anterior mente
-                if(i==0){                    
-                    try{
-                        FileWriter fw = new FileWriter(peliculas);BufferedWriter bw = new BufferedWriter(fw);
-                        bw.write(vuelos[i]);
-                        bw.newLine();
-                        bw.close();
-                    }catch(IOException e){
-                    }
-            // la demas filas se escribiran de forma normal
-                }else{                    
-                    try{
-                        FileWriter fw = new FileWriter(peliculas, true);BufferedWriter bw = new BufferedWriter(fw);
-                        bw.write(vuelos[i]);
-                        bw.newLine();
-                        bw.close();
-                    }catch(IOException e){            
-                    }
-                } 
-            }
-        }
-        // borro la fila de la tabla
-        DefaultTableModel model= (DefaultTableModel)jTable1.getModel();
-        model.removeRow(numfila);        
-    }
-    
     public void fullList(){
         Funcion f= new Funcion();
         String linea;
@@ -315,12 +245,13 @@ public class administrador extends javax.swing.JFrame {
             FileReader fr=new FileReader(peliculas);BufferedReader br= new BufferedReader(fr);
             
                     while((linea=br.readLine())!=null){
-                        if(linea=="#"){
+                        if("#".equals(linea) || linea==null){
                             System.out.println("archivo vacio");
                         }else{
                             String nombre=f.dividir(linea, "#", 0);
                             String genero=f.dividir(linea, "#", 1);
                             String dur=f.dividir(linea, "#", 2);
+                            
                             int duracion=Integer.parseInt(dur);
                             String imagen=f.dividir(linea, "#", 3);
                             lp.add(new Nodopelicula(nombre,genero,imagen,duracion));

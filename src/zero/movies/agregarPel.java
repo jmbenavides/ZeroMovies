@@ -25,7 +25,7 @@ public class agregarPel extends javax.swing.JFrame {
     public agregarPel() {
         initComponents();
         setLocationRelativeTo(null);
-        crear();
+        //crear();
         
     }
 
@@ -44,6 +44,7 @@ public class agregarPel extends javax.swing.JFrame {
         rutaTf = new javax.swing.JLabel();
         duracionTf = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        backBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,21 +70,33 @@ public class agregarPel extends javax.swing.JFrame {
 
         jLabel3.setText("Duracion");
 
+        backBtn.setBackground(new java.awt.Color(255, 153, 102));
+        backBtn.setText("jButton1");
+        backBtn.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        backBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backBtnMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(addpelbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(64, 64, 64)
                         .addComponent(imagenLb, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3))))
+                            .addComponent(jLabel3)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(addpelbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
@@ -123,6 +136,9 @@ public class agregarPel extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addComponent(addpelbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -145,6 +161,7 @@ public class agregarPel extends javax.swing.JFrame {
             int dur=fun.HourtoMin(duracion);            
             lp.add(new Nodopelicula(nombre,genero,ruta,dur));
             //lp.erase();
+            //lp.consult();
             lp.writeinFile();
             
             //agregar(nombre, genero,ruta,dur);
@@ -178,31 +195,12 @@ public class agregarPel extends javax.swing.JFrame {
             rutaimagen=rut;
         }
     }//GEN-LAST:event_imagenBtnMouseClicked
+
+    private void backBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBtnMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_backBtnMouseClicked
     
-    public void agregar(String nombre, String genero, String ruta, int duracion){
-        
-        System.out.println("");
-        
-       try{
-            FileReader fr = new FileReader(peliculas);BufferedReader br = new BufferedReader(fr);
-            if(br.readLine().equals("#")){
-                FileWriter fw = new FileWriter(peliculas);BufferedWriter bw = new BufferedWriter(fw);
-                bw.write(nombre+"#"+genero+"#"+duracion+"#"+ruta+"#");
-                bw.newLine();
-                bw.close();
-                
-            }else{
-                
-                FileWriter fw = new FileWriter(peliculas, true);BufferedWriter bw = new BufferedWriter(fw);
-                bw.write(nombre+"#"+genero+"#"+duracion+"#"+ruta+"#");
-                bw.newLine();
-                bw.close();
-            }
-        }catch(IOException e){
-            System.out.println("12312");
-        } 
-    }
-    
+//  
     public void crear(){
         try{
         // creo el documento en caso de que este no exista y escribo en él el caracter "#" para mostrar que esta vacio
@@ -212,10 +210,8 @@ public class agregarPel extends javax.swing.JFrame {
                 bw.newLine();
                 bw.close();
             }
-        }catch(IOException e){
-            
-        }
-                
+        }catch(IOException e){            
+        }                
     }
     
     public void fullList(){
@@ -271,6 +267,7 @@ public class agregarPel extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addpelbtn;
+    private javax.swing.JButton backBtn;
     private javax.swing.JTextField duracionTf;
     private javax.swing.JTextField generoTf;
     private javax.swing.JButton imagenBtn;
