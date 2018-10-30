@@ -73,11 +73,6 @@ public class agregarPel extends javax.swing.JFrame {
         backBtn.setBackground(new java.awt.Color(255, 153, 102));
         backBtn.setText("Atras");
         backBtn.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        backBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                backBtnMouseClicked(evt);
-            }
-        });
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
@@ -165,11 +160,8 @@ public class agregarPel extends javax.swing.JFrame {
         }else{
             int dur=fun.HourtoMin(duracion);            
             lp.add(new Nodopelicula(nombre,genero,ruta,dur));
-            //lp.erase();
-            //lp.consult();
+            lp.createFile();
             lp.writeinFile();
-            
-            //agregar(nombre, genero,ruta,dur);
             Object[] fila={nombre,genero,dur,ruta};
             DefaultTableModel dtm=(DefaultTableModel)ad.jTable1.getModel();            
             dtm.addRow(fila);
@@ -201,10 +193,6 @@ public class agregarPel extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_imagenBtnMouseClicked
 
-    private void backBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBtnMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_backBtnMouseClicked
-
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
         administradorPel ad= new administradorPel();
@@ -212,7 +200,7 @@ public class agregarPel extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
     
-//  
+/* 
     public void crear(){
         try{
         // creo el documento en caso de que este no exista y escribo en él el caracter "#" para mostrar que esta vacio
@@ -225,7 +213,7 @@ public class agregarPel extends javax.swing.JFrame {
         }catch(IOException e){            
         }                
     }
-    
+*/  
     public void fullList(){
         Funcion f= new Funcion();
         String linea;

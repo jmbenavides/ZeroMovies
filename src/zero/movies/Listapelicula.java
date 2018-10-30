@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -198,9 +198,9 @@ public class Listapelicula {
     }
     
     public void writeinFile(){
-        try{
-            
-            Nodopelicula p=ptr;int cont=0;
+        try{            
+            System.out.println("listpelicula write in file");
+            Nodopelicula p=ptr;
             if(p!=null){
                 while(p!=null){   
                         System.out.println("Writeinfile p "+p.toString());

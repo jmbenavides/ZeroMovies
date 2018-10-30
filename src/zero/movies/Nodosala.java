@@ -12,19 +12,17 @@ package zero.movies;
 public class Nodosala {
     String nombre;
     int capacidad;
-    Listasilla lsi;
     Nodosala link;
 
 
     public Nodosala(String nombre, int num){
         this.nombre=nombre;
         this.capacidad=num;
-        this.lsi= new Listasilla(num);
     }    
     
     @Override
     public String toString(){
-        return nombre;
+        return nombre+capacidad;
     }
     
     

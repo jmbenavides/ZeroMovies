@@ -28,6 +28,11 @@ public class administrador extends javax.swing.JFrame {
         });
 
         adsalBtn.setText("Salas");
+        adsalBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adsalBtnActionPerformed(evt);
+            }
+        });
 
         adfunBtn.setText("Funciones");
 
@@ -63,6 +68,12 @@ public class administrador extends javax.swing.JFrame {
         adP.setVisible(true);
         this.dispose();        
     }//GEN-LAST:event_adpelBtnActionPerformed
+
+    private void adsalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adsalBtnActionPerformed
+        administradorSal adS= new administradorSal();
+        adS.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_adsalBtnActionPerformed
 
     /**
      * @param args the command line arguments
