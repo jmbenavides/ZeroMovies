@@ -196,6 +196,8 @@ public class agregarPel extends javax.swing.JFrame {
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
         administradorPel ad= new administradorPel();
+        ad.lp=lp;
+        
         ad.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed

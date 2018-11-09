@@ -57,6 +57,12 @@ public class administradorPel extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jScrollPane1.setBackground(new java.awt.Color(26, 168, 156));
+
+        jTable1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTable1.setForeground(new java.awt.Color(26, 168, 156));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -88,6 +94,8 @@ public class administradorPel extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(3).setResizable(false);
         }
 
+        addBtn.setBackground(new java.awt.Color(26, 188, 156));
+        addBtn.setForeground(new java.awt.Color(255, 255, 255));
         addBtn.setText("Agregar");
         addBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -95,6 +103,8 @@ public class administradorPel extends javax.swing.JFrame {
             }
         });
 
+        deleteBtn.setBackground(new java.awt.Color(26, 188, 156));
+        deleteBtn.setForeground(new java.awt.Color(255, 255, 255));
         deleteBtn.setText("Eliminar");
         deleteBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -102,6 +112,8 @@ public class administradorPel extends javax.swing.JFrame {
             }
         });
 
+        consultBtn.setBackground(new java.awt.Color(26, 188, 156));
+        consultBtn.setForeground(new java.awt.Color(255, 255, 255));
         consultBtn.setText("Consultar");
         consultBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,6 +121,8 @@ public class administradorPel extends javax.swing.JFrame {
             }
         });
 
+        editBtn.setBackground(new java.awt.Color(26, 188, 156));
+        editBtn.setForeground(new java.awt.Color(255, 255, 255));
         editBtn.setText("Modificar");
         editBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,7 +130,8 @@ public class administradorPel extends javax.swing.JFrame {
             }
         });
 
-        backBtn.setBackground(new java.awt.Color(255, 153, 102));
+        backBtn.setBackground(new java.awt.Color(26, 188, 156));
+        backBtn.setForeground(new java.awt.Color(255, 255, 255));
         backBtn.setText("Atras");
         backBtn.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         backBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -134,8 +149,9 @@ public class administradorPel extends javax.swing.JFrame {
                 .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(117, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(85, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(addBtn)
                         .addGap(63, 63, 63)
@@ -143,16 +159,15 @@ public class administradorPel extends javax.swing.JFrame {
                         .addGap(84, 84, 84)
                         .addComponent(consultBtn)
                         .addGap(47, 47, 47)
-                        .addComponent(editBtn))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30))
+                        .addComponent(editBtn)))
+                .addGap(62, 62, 62))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addBtn)
                     .addComponent(deleteBtn)
@@ -167,14 +182,11 @@ public class administradorPel extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -183,6 +195,7 @@ public class administradorPel extends javax.swing.JFrame {
     private void addBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBtnMouseClicked
         // TODO add your handling code here:
         agregarPel ap= new agregarPel();
+        ap.lp=lp;
         ap.setVisible(true);
         this.dispose();
         
@@ -195,6 +208,7 @@ public class administradorPel extends javax.swing.JFrame {
             lp.consult();
             lp.erase();
             lp.writeinFile();
+            
             this.update();
         }else{
             JOptionPane.showMessageDialog(null, "Seleccione un pelicula para eliminar");
@@ -210,6 +224,7 @@ public class administradorPel extends javax.swing.JFrame {
             cP.numfila=jTable1.getSelectedRow();
             cP.lp=this.lp;
             cP.setVisible(true);
+            cP.update();
             this.dispose();
         }else{
             JOptionPane.showMessageDialog(null, "Seleccione un pelicula para consultar");
@@ -223,7 +238,9 @@ public class administradorPel extends javax.swing.JFrame {
             modificarPel mP=new modificarPel();
             mP.numfila=jTable1.getSelectedRow();
             mP.lp=this.lp;
+            
             mP.setVisible(true);
+            mP.update();
             this.dispose();
         }else{
             JOptionPane.showMessageDialog(null, "Seleccione un pelicula para modificar");
@@ -236,50 +253,65 @@ public class administradorPel extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
     
-    public void update() {
-        String linea;        
-        Funcion f= new Funcion();
-        
+//    public void update() {
+//        String linea;        
+//        Funcion f= new Funcion();
+//        
+//        DefaultTableModel model=(DefaultTableModel)jTable1.getModel();
+//        // borrando los datos que se encuentran en la tabla
+//        int modelsize=model.getRowCount();
+//        // 
+//        while(modelsize!=0 ){
+//            model.removeRow(0);
+//            modelsize--;
+//        }
+//        if(peliculas.exists()){
+//            try {
+//                FileReader fr1=new FileReader(peliculas);BufferedReader br1= new BufferedReader(fr1);
+//                if(br1.readLine().equals("#")){
+//                }else{
+//                    FileReader fr=new FileReader(peliculas);BufferedReader br= new BufferedReader(fr);
+//                    while((linea=br.readLine())!=null){
+//                        String nombre=f.dividir(linea, "#", 0);
+//                        String genero=f.dividir(linea, "#", 1);
+//                        String duracion=f.dividir(linea, "#", 2);
+//                        String imagen=f.dividir(linea, "#", 3);
+//                       
+//                        
+//                        Object[] fila={nombre,genero,duracion,imagen};
+//                        model.addRow(fila);
+//                    }
+//                    
+//                }
+//            } catch (FileNotFoundException ex) {
+//                
+//            } catch (IOException ex) {
+//                
+//            }   
+//        }else{
+//            JOptionPane.showMessageDialog(null, "no hay peliculas");
+//        }
+//        
+//    }
+    
+    public void update(){
+        Nodopelicula p=lp.ptr;
         DefaultTableModel model=(DefaultTableModel)jTable1.getModel();
-        // borrando los datos que se encuentran en la tabla
         int modelsize=model.getRowCount();
-        // 
         while(modelsize!=0 ){
             model.removeRow(0);
             modelsize--;
         }
-        if(peliculas.exists()){
-            try {
-                FileReader fr1=new FileReader(peliculas);BufferedReader br1= new BufferedReader(fr1);
-                if(br1.readLine().equals("#")){
-                    if(modelsize==1){
-                        model.removeRow(0);
-                    }
-                    
-                    JOptionPane.showMessageDialog(null, "Lista de peliculas ");
-                }else{
-                    FileReader fr=new FileReader(peliculas);BufferedReader br= new BufferedReader(fr);
-                    while((linea=br.readLine())!=null){
-                        String nombre=f.dividir(linea, "#", 0);
-                        String genero=f.dividir(linea, "#", 1);
-                        String duracion=f.dividir(linea, "#", 2);
-                        String imagen=f.dividir(linea, "#", 3);
-                       
-                        
-                        Object[] fila={nombre,genero,duracion,imagen};
-                        model.addRow(fila);
-                    }
-                    
-                }
-            } catch (FileNotFoundException ex) {
-                
-            } catch (IOException ex) {
-                
-            }   
-        }else{
-            JOptionPane.showMessageDialog(null, "no hay peliculas");
-        }
         
+        while(p!=null){
+            String nombre=p.nombre;
+            String genero=p.genero;
+            String imagen=p.imagen;
+            int duracion=p.duracion;
+            Object[] data={nombre,genero,duracion,imagen};
+            model.addRow(data);
+            p=p.link;
+        }
     }
     
     public void fullList(){

@@ -52,7 +52,6 @@ public class modificarPel extends javax.swing.JFrame {
         imagenBtn = new javax.swing.JButton();
         imagenLb = new javax.swing.JLabel();
         rutaTf = new javax.swing.JLabel();
-        reloadBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,15 +86,6 @@ public class modificarPel extends javax.swing.JFrame {
             }
         });
 
-        reloadBtn.setBackground(new java.awt.Color(255, 153, 102));
-        reloadBtn.setText("recargar");
-        reloadBtn.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        reloadBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                reloadBtnMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -122,8 +112,7 @@ public class modificarPel extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(nombreTf, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
                                 .addComponent(generoTf)
-                                .addComponent(duracionTf))
-                            .addComponent(reloadBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(duracionTf))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(rutaTf, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -150,9 +139,7 @@ public class modificarPel extends javax.swing.JFrame {
                         .addComponent(imagenBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(rutaTf, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addComponent(reloadBtn)
-                        .addGap(83, 83, 83))
+                        .addGap(142, 142, 142))
                     .addComponent(imagenLb, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(editpelbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -190,7 +177,7 @@ public class modificarPel extends javax.swing.JFrame {
             lp.writeinFile();
             ad.lp=lp;
             ad.setVisible(true);
-            
+            ad.update();
             this.dispose();
         }
 
@@ -212,11 +199,6 @@ public class modificarPel extends javax.swing.JFrame {
             rutaTf.setText(rut);
         }
     }//GEN-LAST:event_imagenBtnMouseClicked
-
-    private void reloadBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reloadBtnMouseClicked
-        // TODO add your handling code here:
-        update();
-    }//GEN-LAST:event_reloadBtnMouseClicked
     
     
     public void update(){
@@ -311,7 +293,6 @@ public class modificarPel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField nombreTf;
-    private javax.swing.JButton reloadBtn;
     private javax.swing.JLabel rutaTf;
     // End of variables declaration//GEN-END:variables
 }

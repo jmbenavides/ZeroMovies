@@ -3,14 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Jorge%20Benavides/Documents/GitHub/ZeroMovies/src/zero/movies/Nodosala.java</file>
-            <file>file:/C:/Users/Jorge%20Benavides/Documents/GitHub/ZeroMovies/src/zero/movies/Listasala.java</file>
-            <file>file:/C:/Users/Jorge%20Benavides/Documents/GitHub/ZeroMovies/src/zero/movies/agregarPel.java</file>
             <file>file:/C:/Users/Jorge%20Benavides/Documents/GitHub/ZeroMovies/src/zero/movies/administrador.java</file>
             <file>file:/C:/Users/Jorge%20Benavides/Documents/GitHub/ZeroMovies/src/zero/movies/administradorPel.java</file>
-            <file>file:/C:/Users/Jorge%20Benavides/Documents/GitHub/ZeroMovies/src/zero/movies/Listapelicula.java</file>
+            <file>file:/C:/Users/Jorge%20Benavides/Documents/GitHub/ZeroMovies/src/zero/movies/agregarFun.java</file>
             <file>file:/C:/Users/Jorge%20Benavides/Documents/GitHub/ZeroMovies/src/zero/movies/administradorSal.java</file>
+            <file>file:/C:/Users/Jorge%20Benavides/Documents/GitHub/ZeroMovies/src/zero/movies/administradorFun.java</file>
             <file>file:/C:/Users/Jorge%20Benavides/Documents/GitHub/ZeroMovies/peliculas.txt</file>
+            <file>file:/C:/Users/Jorge%20Benavides/Documents/GitHub/ZeroMovies/salas.txt</file>
         </group>
     </open-files>
 </project-private>

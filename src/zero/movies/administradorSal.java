@@ -20,7 +20,7 @@ public class administradorSal extends javax.swing.JFrame {
     public administradorSal() {
         initComponents();
         update();
-        
+        this.setLocationRelativeTo(null);
     }
 
     
@@ -32,7 +32,6 @@ public class administradorSal extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         deleteBtn = new javax.swing.JButton();
         addBtn = new javax.swing.JButton();
-        aceptBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -73,13 +72,6 @@ public class administradorSal extends javax.swing.JFrame {
             }
         });
 
-        aceptBtn.setText("jButton1");
-        aceptBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aceptBtnActionPerformed(evt);
-            }
-        });
-
         backBtn.setBackground(new java.awt.Color(255, 153, 102));
         backBtn.setText("Atras");
         backBtn.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -101,8 +93,6 @@ public class administradorSal extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(addBtn)
-                                .addGap(53, 53, 53)
-                                .addComponent(aceptBtn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(deleteBtn))))
                     .addGroup(layout.createSequentialGroup()
@@ -118,8 +108,7 @@ public class administradorSal extends javax.swing.JFrame {
                 .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addBtn)
-                    .addComponent(deleteBtn)
-                    .addComponent(aceptBtn))
+                    .addComponent(deleteBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -140,65 +129,76 @@ public class administradorSal extends javax.swing.JFrame {
         d.removeRow(jTable1.getSelectedRow());
     }//GEN-LAST:event_deleteBtnActionPerformed
 
-    private void aceptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptBtnActionPerformed
-        // TODO add your handling code here:
-        fullList();
-        ls.consult();
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        fullList();        
         
-        ls.createFile();
+        
         ls.erase();
         ls.writeinFile();
+        ls.consult();
+               
         
-    }//GEN-LAST:event_aceptBtnActionPerformed
-
-    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        administrador ad=new administrador();
+        administrador ad=new administrador(); 
+        ad.ls=ls;
         ad.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
     
+//    public void update() {
+//        String linea;        
+//        Funcion f= new Funcion();
+//        
+//        DefaultTableModel model=(DefaultTableModel)jTable1.getModel();
+//        // borrando los datos que se encuentran en la tabla
+//        int modelsize=model.getRowCount();
+//        // 
+//        while(modelsize!=0 ){
+//            model.removeRow(0);
+//            modelsize--;
+//        }
+//        if(salas.exists()){
+//            try {
+//                FileReader fr1=new FileReader(salas);BufferedReader br1= new BufferedReader(fr1);
+//                if(br1.readLine().equals("#")){                    
+//                }else{
+//                    FileReader fr=new FileReader(salas);BufferedReader br= new BufferedReader(fr);
+//                    while((linea=br.readLine())!=null){
+//                        String nombre=f.dividir(linea, "#", 0);
+//                        String capacidad=f.dividir(linea, "#", 1);
+//                        Object[] fila={nombre,capacidad};
+//                        model.addRow(fila);
+//                    }
+//                    
+//                }
+//            } catch (FileNotFoundException ex) {
+//                
+//            } catch (IOException ex) {
+//                
+//            }   
+//        }else{
+//            JOptionPane.showMessageDialog(null, "no hay peliculas");
+//        }
+//        
+//    }
     
-    
-    
-    
-    public void update() {
-        String linea;        
-        Funcion f= new Funcion();
-        
-        DefaultTableModel model=(DefaultTableModel)jTable1.getModel();
-        // borrando los datos que se encuentran en la tabla
-        int modelsize=model.getRowCount();
-        // 
-        while(modelsize!=0 ){
-            model.removeRow(0);
-            modelsize--;
-        }
-        if(salas.exists()){
-            try {
-                FileReader fr1=new FileReader(salas);BufferedReader br1= new BufferedReader(fr1);
-                if(br1.readLine().equals("#")){
-                    if(modelsize==1){
-                        model.removeRow(0);
-                    }
-                    
-                    JOptionPane.showMessageDialog(null, "Lista de salas vacia ");
-                }else{
-                    FileReader fr=new FileReader(salas);BufferedReader br= new BufferedReader(fr);
-                    while((linea=br.readLine())!=null){
-                        String nombre=f.dividir(linea, "#", 0);
-                        String capacidad=f.dividir(linea, "#", 1);
-                        Object[] fila={nombre,capacidad};
-                        model.addRow(fila);
-                    }
-                    
-                }
-            } catch (FileNotFoundException ex) {
-                
-            } catch (IOException ex) {
-                
-            }   
-        }else{
-            JOptionPane.showMessageDialog(null, "no hay peliculas");
+    public void update(){
+        if(ls!= null){
+            Nodosala s=ls.ptr;        
+            DefaultTableModel model=(DefaultTableModel)jTable1.getModel();
+            System.out.println("ls consult update sala");
+            ls.consult();
+            int modelsize=model.getRowCount();
+            while(modelsize!=0 ){
+                model.removeRow(0);
+                modelsize--;
+            }
+            while(s!=null){
+                String nombre=s.nombre;
+                String capacidad=String.valueOf(s.capacidad);
+                Object[] fila={nombre,capacidad};
+                model.addRow(fila);
+                s=s.link;
+            }
         }
         
     }
@@ -258,7 +258,6 @@ public class administradorSal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton aceptBtn;
     private javax.swing.JButton addBtn;
     private javax.swing.JButton backBtn;
     private javax.swing.JButton deleteBtn;
